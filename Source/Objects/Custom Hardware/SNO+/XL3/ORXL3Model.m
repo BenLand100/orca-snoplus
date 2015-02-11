@@ -3584,6 +3584,9 @@ void SwapLongBlock(void* p, int32_t n)
 
 - (void) hvPanicDown
 {
+    if ([self isTriggerON]) {
+        [self hvTriggersOFF];
+    }
     [self setHvPanicFlag:YES];
     [self setHvANextStepValue:0];
     [self setHvBNextStepValue:0];
