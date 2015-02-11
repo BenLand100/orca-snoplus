@@ -443,8 +443,8 @@
 	int i;
 	int maskValue = [model dbIntByIndex: kGtMask];
 	for(i=0;i<26;i++){
-		[[globalTriggerMaskMatrix cellWithTag:i]  setIntValue: maskValue & (1<<i)];
-	}
+        [[globalTriggerMaskMatrix cellWithTag:i]  setIntValue: maskValue & (1<<i)];
+    }
 	maskValue = [model dbIntByIndex: kGtCrateMask];
 	for(i=0;i<25;i++){
 		[[globalTriggerCrateMaskMatrix cellWithTag:i]  setIntValue: maskValue & (1<<i)];
@@ -936,6 +936,7 @@
 
 - (IBAction) settingsGTMaskAction:(id) sender 
 {
+    [[sender selectedCell] setBackgroundColor:[NSColor redColor]];
 	unsigned long mask = 0;
 	int i;
 	for(i=0;i<26;i++){
@@ -948,6 +949,7 @@
 
 - (IBAction) settingsGTCrateMaskAction:(id) sender 
 {
+    [[sender selectedCell] setBackgroundColor:[NSColor redColor]];
 	unsigned long mask = 0;
 	int i;
 	for(i=0;i<25;i++){
@@ -960,6 +962,7 @@
 
 - (IBAction) settingsPEDCrateMaskAction:(id) sender 
 {
+    [[sender selectedCell] setBackgroundColor:[NSColor redColor]];
 	unsigned long mask = 0;
 	int i;
 	for(i=0;i<25;i++){
@@ -1134,16 +1137,26 @@
 
 - (IBAction) triggersLoadTriggerMask:(id) sender
 {
+    for (int i = 0; i < 26; i++) {
+        [[globalTriggerMaskMatrix cellWithTag:i] setBackgroundColor:[[NSColor windowBackgroundColor] colorWithAlphaComponent:0.5f] ];
+    }
     [model setGlobalTriggerWordMask];
+    
 }
 
 - (IBAction) triggersLoadGTCrateMask:(id) sender
 {
+    for (int i = 0; i < 26; i++) {
+        [[globalTriggerCrateMaskMatrix cellWithTag:i] setBackgroundColor:[[NSColor windowBackgroundColor] colorWithAlphaComponent:0.5f] ];
+    }
     [model setGTCrateMask];
 }
 
 - (IBAction) triggersLoadPEDCrateMask:(id) sender
 {
+    for (int i = 0; i < 26; i++) {
+        [[pedCrateMaskMatrix cellWithTag:i] setBackgroundColor:[[NSColor windowBackgroundColor] colorWithAlphaComponent:0.5f] ];
+    }
     [model setPedestalCrateMask];
 }
 
