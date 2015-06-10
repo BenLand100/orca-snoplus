@@ -1356,6 +1356,10 @@ void SwapLongBlock(void* p, int32_t n)
         memcpy(&safe_bundle[i], &aConfigBundle, sizeof(mb_t));
     }
     
+    //hack to start the HV monitoring automiatically on init
+    [self setHVSwitch:YES forPowerSupply:0];
+    [self setHVSwitch:YES forPowerSupply:1];
+    
 	[[self undoManager] enableUndoRegistration];
     [self registerNotificationObservers];
 	return self;
